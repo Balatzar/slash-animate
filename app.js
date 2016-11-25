@@ -26,7 +26,7 @@ app.post('/', function (req, res) {
     } else {
       console.log(result.body)
 
-      var editUrl = "https://slack.com/api/chat.update?ts=" + result.body.ts +"&channel=" + result.body.channel + "&text=";
+      var editUrl = "https://slack.com/api/chat.update?ts=" + result.body.ts +"&channel=%23" + result.body.channel_name + "&text=";
       var editUrlText = editUrl + encodeURIComponent("édité")
 
       console.log(editUrlText)
