@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/', function (req, res) {
   console.log(req.body)
   var url = "https://slack.com/api/chat.postMessage?token=" + process.env.slack + "&channel=%23testage&text=";
-  var urlText = url += encodeURIComponent(":full_moon_with_face:")
+  var urlText = url + encodeURIComponent(":full_moon_with_face:")
 
   console.log(urlText)
 
@@ -23,7 +23,20 @@ app.post('/', function (req, res) {
     if (err) {
       console.warn(err)
     } else {
-      console.log(result)
+      console.log(result.body)
+
+      var editUrl = "https://slack.com/api/chat.update?ts=" + result.body.ts +"&channel=" + result.body.channel + "&text=";
+      var editUrlText = editUrl + encodeURIComponent("édité")
+
+      console.log(editUrlText)
+
+      post(editUrlText, {}, (error, r) => {
+        if (error) {
+          console.warn(error)
+        } else {
+          console.log(r.body)
+        }
+      })
     }
   })
 })
