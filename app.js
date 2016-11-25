@@ -30,8 +30,6 @@ app.post('/', function (req, res) {
 
       var space = "  "
 
-      console.log(editUrlText)
-
       var j = 10;
 
       var interval = setInterval(() => {
