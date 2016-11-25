@@ -31,13 +31,22 @@ app.post('/', function (req, res) {
 
       console.log(editUrlText)
 
-      post(editUrlText, {}, (error, r) => {
-        if (error) {
-          console.warn(error)
-        } else {
-          console.log(r.body)
+      var j = 0;
+
+      var interval = setInterval(() => {
+        j += 1
+        if (j === 10) {
+          clearInterval(interval);
         }
-      })
+        var editUrlText += j;
+        post(editUrlText, {}, (error, r) => {
+          if (error) {
+            console.warn(error)
+          } else {
+            console.log(r.body)
+          }
+        })
+      }, 1000)
     }
   })
 })
