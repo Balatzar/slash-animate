@@ -14,8 +14,8 @@ app.post('/', function (req, res) {
   console.log(urlText)
 
   var response = {
-    "response_type": "in_channel",
-    "text": ":full_moon_with_face:",
+    "response_type": "ephemeral",
+    "text": "c'est parti :full_moon_with_face:",
   }
   res.status(200).json(response)
 
