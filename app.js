@@ -2,7 +2,8 @@ var express = require('express')
 var app = express()
 
 app.post('/', function (req, res) {
-  res.send(JSON.stringify(req))
+  console.log(req)
+  res.status(200)
 })
 
 app.listen(process.env.PORT || 5000, function () {
