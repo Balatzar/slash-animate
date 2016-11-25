@@ -23,10 +23,10 @@ app.post('/', function (req, res) {
     if (err) {
       console.warn(err)
     } else {
-      console.log("result.body")
       console.log(result.body)
+      var msg = JSON.parse(result.body)
 
-      var editUrl = "https://slack.com/api/chat.update?token=" + process.env.slack + "&ts=" + result.body.ts +"&channel=%23" + result.body.channel_name + "&text=";
+      var editUrl = "https://slack.com/api/chat.update?token=" + process.env.slack + "&ts=" + msg.ts +"&channel=%23" + msg.message.channel_name + "&text=";
       var editUrlText = editUrl + encodeURIComponent("édité")
 
       console.log(editUrlText)
