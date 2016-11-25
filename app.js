@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/', function (req, res) {
   console.log(req.body)
   var url = "https://slack.com/api/chat.postMessage?token=" + process.env.slack + "&channel=%23testage&text=";
-  var urlText = url + encodeURIComponent(`:house:${"  ".repeat(11)}:runner:`)
+  var urlText = url + encodeURIComponent(`:house:${"    ".repeat(21)}:runner:`)
 
   console.log(urlText)
 
@@ -28,9 +28,9 @@ app.post('/', function (req, res) {
 
       var editUrl = "https://slack.com/api/chat.update?token=" + process.env.slack + "&ts=" + msg.ts +"&channel=" + msg.channel + "&text=";
 
-      var space = "  "
+      var space = "    "
 
-      var j = 10;
+      var j = 20;
 
       var interval = setInterval(() => {
         j -= 1
