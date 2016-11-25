@@ -22,6 +22,7 @@ app.post('/', function (req, res) {
   post(urlText, {}, function (err, result) {
     if (err) {
       console.warn(err)
+      console.warn("error !!!!")
     } else {
       console.log(result.body)
 
