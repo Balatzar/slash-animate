@@ -41,14 +41,14 @@ app.post('/', function (req, res) {
         }
         var text = `:house:${space.repeat(j)}${j > 1 ? ':runner:' : ''}`
         editUrl += encodeURIComponent(text)
-        post(editUrlText, {}, (error, r) => {
+        post(editUrl, {}, (error, r) => {
           if (error) {
             console.warn(error)
           } else {
             console.log(r.body)
           }
         })
-      }, 1000)
+      }, 200)
     }
   })
 })
