@@ -38,8 +38,8 @@ app.post('/', function (req, res) {
           clearInterval(interval);
         }
         var text = `:house:${space.repeat(j)}${j > 1 ? ':runner:' : ''}`
-        editUrl += encodeURIComponent(text)
-        post(editUrl, {}, (error, r) => {
+        
+        post(editUrl + encodeURIComponent(text), {}, (error, r) => {
           if (error) {
             console.warn(error)
           } else {
