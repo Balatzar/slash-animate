@@ -8,7 +8,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/', function (req, res) {
   console.log(req.body)
-  var response_url = req.body.response_url
+  var url = "https://slack.com/api/chat.postMessage?token=xoxp-39199719905-39194936949-42197094672-bb067349cc&channel=%23testage&text=";
+  var urlText = url += encodeURIComponent(":full_moon_with_face:")
+
+  console.log(urlText)
 
   var response = {
     "response_type": "in_channel",
@@ -16,11 +19,11 @@ app.post('/', function (req, res) {
   }
   res.status(200).json(response)
 
-  post(response_url, response, function (err, result) {
+  post(urlText, {}, function (err, result) {
     if (err) {
       console.warn(err)
     } else {
-      console.log(result.body)
+      console.log(result)
     }
   })
 })
