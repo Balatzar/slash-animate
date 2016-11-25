@@ -10,12 +10,7 @@ app.post('/', function (req, res) {
 
   var response = {
     "response_type": "in_channel",
-    "text": "It's 80 degrees right now.",
-    "attachments": [
-      {
-        "text":"Partly cloudy today and tomorrow"
-      }
-    ]
+    "text": ":full_moon_with_face:",
   }
   res.status(200).json(response)
 })
