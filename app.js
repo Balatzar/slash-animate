@@ -38,7 +38,7 @@ app.post('/', function (req, res) {
         if (j === 10) {
           clearInterval(interval);
         }
-        var editUrlText += j;
+        editUrlText += j;
         post(editUrlText, {}, (error, r) => {
           if (error) {
             console.warn(error)
