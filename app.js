@@ -48,7 +48,7 @@ app.post('/', function (req, res) {
             console.log(r.body)
           }
         })
-      }, 200)
+      }, 1000)
     }
   })
 })
