@@ -1,0 +1,23 @@
+{
+  "name": "slash-animate",
+  "version": "1.0.0",
+  "description": "coucou",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Balatzar/slash-animate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Balatzar/slash-animate/issues"
+  },
+  "homepage": "https://github.com/Balatzar/slash-animate#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
