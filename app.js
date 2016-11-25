@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/', function (req, res) {
   console.log(req.body)
-  var url = "https://slack.com/api/chat.postMessage?token=xoxp-39199719905-39194936949-42197094672-bb067349cc&channel=%23testage&text=";
+  var url = "https://slack.com/api/chat.postMessage?token=" + process.env.slack + "&channel=%23testage&text=";
   var urlText = url += encodeURIComponent(":full_moon_with_face:")
 
   console.log(urlText)
