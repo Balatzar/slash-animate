@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/', function (req, res) {
   console.log(req.body)
-  res.status(200)
+  res.status(200).send("bonsoir")
 })
 
 app.listen(process.env.PORT || 5000, function () {
