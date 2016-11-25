@@ -16,15 +16,13 @@ app.post('/', function (req, res) {
   }
   res.status(200).json(response)
 
-  for (i = 0; i < 20; i += 1) {
-    post(response_url, response, function (err, result) {
-      if (err) {
-        console.warn(err)
-      } else {
-        console.log(result)
-      }
-    })
-  }
+  post(response_url, response, function (err, result) {
+    if (err) {
+      console.warn(err)
+    } else {
+      console.log(res.body)
+    }
+  })
 })
 
 app.listen(process.env.PORT || 5000, function () {
