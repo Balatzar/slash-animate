@@ -83,7 +83,9 @@ MongoClient.connect(url, (err, db) => {
             channel: res.body.channel_id,
             text: movie.frames[0],
           }
-          post(urlCreator(base, "chat.postMessage", params), {}, (error, result) => {
+          var urlPost = urlCreator(base, "chat.postMessage", params)
+          console.log(urlPost)
+          post(urlPost, {}, (error, result) => {
             if (error) {
               console.warn(error)
             } else {
@@ -100,7 +102,9 @@ MongoClient.connect(url, (err, db) => {
                   post(urlCreator(base, "chat.delete", params), {}, logging)
                 }
 
-                post(urlCreator(base, "chat.update", params), {}, logging)
+                var urlUpdate = urlCreator(base, "chat.update", params)
+                console.log(urlUpdate)
+                post(urlUpdate, {}, logging)
               }, 200)
             }
           })
