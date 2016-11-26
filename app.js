@@ -13,11 +13,7 @@ app.post("/", function (req, res) {
 
   console.log(urlText)
 
-  var response = {
-    "response_type": "ephemeral",
-    "text": "c'est parti :full_moon_with_face:",
-  }
-  res.status(200).json(response)
+  res.status(200)
 
   post(urlText, {}, function (err, result) {
     if (err) {
