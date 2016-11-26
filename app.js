@@ -61,7 +61,7 @@ MongoClient.connect(url, (err, db) => {
 
     app.post("/", function (req, res) {
       console.log(req.body)
-      var name = req.body.text || "basic"
+      var name = req.body.text || "demo"
 
       movies.findOne({ name }, (err, movie) => {
         if (err) {
