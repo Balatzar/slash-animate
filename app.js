@@ -93,13 +93,13 @@ MongoClient.connect(url, (err, db) => {
               var j = 1
 
               params.ts = msg.ts
-              params.text = movie.frames[j]
 
               var interval = setInterval(() => {
                 if (j === 20) {
                   clearInterval(interval)
                   post(urlCreator(base, "chat.delete", params), {}, logging)
                 }
+                params.text = movie.frames[j]
                 j += 1
 
                 var urlUpdate = urlCreator(base, "chat.update", params)
