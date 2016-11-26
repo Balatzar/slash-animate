@@ -3,7 +3,7 @@ var app = express()
 var bodyParser = require("body-parser")
 var post = require("post-json")
 
-var urlCreator = require("./url_creator")
+var urlCreator = require("./src/modules/url_creator")
 
 var base = "https://slack.com/api/"
 
