@@ -13,7 +13,10 @@ app.post("/", function (req, res) {
 
   console.log(urlText)
 
-  res.status(200)
+  var response = {
+    "response_type": "in_channel",
+  }
+  res.status(200).json(response)
 
   post(urlText, {}, function (err, result) {
     if (err) {
