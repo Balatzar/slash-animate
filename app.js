@@ -80,7 +80,7 @@ MongoClient.connect(url, (err, db) => {
 
           const params = {
             token: process.env.slack,
-            channel: res.body.channel_id,
+            channel: req.body.channel_id,
             text: movie.frames[0],
           }
           var urlPost = urlCreator(base, "chat.postMessage", params)
