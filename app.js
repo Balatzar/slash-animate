@@ -63,7 +63,7 @@ MongoClient.connect(url, (err, db) => {
       console.log(req.body)
       var name = req.body.text || "basic"
 
-      movies.find({ name }, (err, movie) => {
+      movies.findOne({ name }, (err, movie) => {
         if (err) {
           console.warn(err)
         } else {
