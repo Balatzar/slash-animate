@@ -54,11 +54,11 @@ app.post("/", function (req, res) {
 
       var editUrl = "https://slack.com/api/chat.update?token=" + process.env.slack + "&ts=" + msg.ts + "&channel=" + msg.channel + "&text="
 
-      var j = 20
+      var j = 0
 
       var interval = setInterval(() => {
-        j -= 1
-        if (!j) {
+        j += 1
+        if (j === 20) {
           clearInterval(interval)
           var params = {
             token: process.env.slack,
