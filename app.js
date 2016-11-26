@@ -43,7 +43,7 @@ app.post("/", function (req, res) {
             token: process.env.slack,
             ts: msg.ts,
             channel: msg.channel,
-          }), (error, r) => {
+          }), {}, (error, r) => {
             if (error) {
               console.warn(error)
             } else {
