@@ -67,51 +67,45 @@ MongoClient.connect(url, (err, db) => {
         if (err) {
           console.warn(err)
         } else if (!movie) {
-          var response = {
+          const response = {
             response_type: "ephemeral",
             text: "Cette animation n'existe pas. Essayez 'demo' !",
           }
           res.status(200).json(response)
+        } else {
+          const response = {
+            "response_type": "in_channel",
+          }
+          res.status(200).json(response)
+
+          const params = {
+            token: process.env.slack,
+            channel: res.body.channel_id,
+            text: movie.frames[0],
+          }
+          post(urlCreator(base, "chat.postMessage", params), {}, (error, result) => {
+            if (error) {
+              console.warn(error)
+            } else {
+              var msg = JSON.parse(result.body)
+              var j = 1
+
+              params.ts = msg.ts
+              params.text = movie.frames[j]
+
+              var interval = setInterval(() => {
+                j += 1
+                if (j === 20) {
+                  clearInterval(interval)
+                  post(urlCreator(base, "chat.delete", params), {}, logging)
+                }
+
+                post(urlCreator(base, "chat.update", params), {}, logging)
+              }, 200)
+            }
+          })
         }
       })
-      // var url = "https://slack.com/api/chat.postMessage?token=" + process.env.slack + "&channel=%23testage&text="
-      // var urlText = url + encodeURIComponent(`:house:${"  ".repeat(21)}:runner:`)
-
-      // console.log(urlText)
-
-      // var response = {
-      //   "response_type": "in_channel",
-      // }
-      // res.status(200).json(response)
-
-      // post(urlText, {}, function (err, result) {
-      //   if (err) {
-      //     console.warn(err)
-      //   } else {
-      //     console.log(result.body)
-      //     var msg = JSON.parse(result.body)
-
-      //     var editUrl = "https://slack.com/api/chat.update?token=" + process.env.slack + "&ts=" + msg.ts + "&channel=" + msg.channel + "&text="
-
-      //     var j = 0
-
-      //     var interval = setInterval(() => {
-      //       j += 1
-      //       if (j === 20) {
-      //         clearInterval(interval)
-      //         var params = {
-      //           token: process.env.slack,
-      //           ts: msg.ts,
-      //           channel: msg.channel,
-      //         }
-      //         post(urlCreator(base, "chat.delete", params), {}, logging)
-      //       }
-      //       var text = anim[j]
-
-      //       post(editUrl + encodeURIComponent(text), {}, logging)
-      //     }, 200)
-      //   }
-      // })
     })
 
     app.listen(process.env.PORT || 5000, () => {
