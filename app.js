@@ -2,6 +2,7 @@ var express = require("express")
 var mongodb = require("mongodb")
 var bodyParser = require("body-parser")
 var post = require("post-json")
+var fs = require("fs")
 
 var urlCreator = require("./src/modules/url_creator")
 
@@ -49,11 +50,12 @@ MongoClient.connect(url, (err, db) => {
             `:house:${"  ".repeat(1)}:runner3:`,
           ],
         }
-        movies.insert(demo, (err, res) => {
+        var never = JSON.parse(fs.readFileSync("./assets/seeds/nevergonna.json", "utf8"))
+        movies.insert([demo, never], (err, res) => {
           if (err) {
             console.warn(err)
           } else {
-            console.log("Created demo animation")
+            console.log("Created demos animation")
           }
         })
       }
