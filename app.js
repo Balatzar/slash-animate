@@ -66,8 +66,12 @@ MongoClient.connect(url, (err, db) => {
       movies.findOne({ name }, (err, movie) => {
         if (err) {
           console.warn(err)
-        } else {
-          console.log(movie)
+        } else if (!movie) {
+          var response = {
+            response_type: "ephemeral",
+            text: "Cette animation n'existe pas. Essayez 'demo' !",
+          }
+          res.status(200).json(response)
         }
       })
       // var url = "https://slack.com/api/chat.postMessage?token=" + process.env.slack + "&channel=%23testage&text="
