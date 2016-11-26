@@ -3,6 +3,10 @@ var app = express()
 var bodyParser = require("body-parser")
 var post = require("post-json")
 
+var urlCreator = require("./url_creator")
+
+var base = "https://slack.com/api/"
+
 app.use(bodyParser.json({ limit: "5mb" }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -35,6 +39,17 @@ app.post("/", function (req, res) {
         j -= 1
         if (!j) {
           clearInterval(interval)
+          post(urlCreator(base, "chat.delete", {
+            token: process.env.slack,
+            ts: msg.ts,
+            channel: msg.channel,
+          }), (error, r) => {
+            if (error) {
+              console.warn(error)
+            } else {
+              console.log(r.body)
+            }
+          })
         }
         var text = `:house:${space.repeat(j)}${j > 1 ? ":runner:" : ""}`
 
