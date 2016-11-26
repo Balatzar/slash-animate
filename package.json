@@ -23,6 +23,7 @@
     "body-parser": "^1.15.2",
     "eslint": "^3.11.0",
     "express": "^4.14.0",
+    "mongodb": "^2.2.11",
     "post-json": "^0.3.1",
     "tape": "^4.6.3"
   },
