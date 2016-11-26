@@ -7,6 +7,29 @@ var urlCreator = require("./src/modules/url_creator")
 
 var base = "https://slack.com/api/"
 
+var anim = [
+  `:house:${"  ".repeat(20)}:runner2:`,
+  `:house:${"  ".repeat(19)}:runner3:`,
+  `:house:${"  ".repeat(18)}:runner4:`,
+  `:house:${"  ".repeat(17)}:runner3:`,
+  `:house:${"  ".repeat(16)}:runner2:`,
+  `:house:${"  ".repeat(15)}:runner:`,
+  `:house:${"  ".repeat(14)}:runner2:`,
+  `:house:${"  ".repeat(13)}:runner3:`,
+  `:house:${"  ".repeat(12)}:runner4:`,
+  `:house:${"  ".repeat(11)}:runner3:`,
+  `:house:${"  ".repeat(10)}:runner2:`,
+  `:house:${"  ".repeat(9)}:runner:`,
+  `:house:${"  ".repeat(8)}:runner2:`,
+  `:house:${"  ".repeat(7)}:runner3:`,
+  `:house:${"  ".repeat(6)}:runner4:`,
+  `:house:${"  ".repeat(5)}:runner3:`,
+  `:house:${"  ".repeat(4)}:runner2:`,
+  `:house:${"  ".repeat(3)}:runner:`,
+  `:house:${"  ".repeat(2)}:runner2:`,
+  `:house:${"  ".repeat(1)}:runner3:`,
+]
+
 app.use(bodyParser.json({ limit: "5mb" }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -31,35 +54,22 @@ app.post("/", function (req, res) {
 
       var editUrl = "https://slack.com/api/chat.update?token=" + process.env.slack + "&ts=" + msg.ts + "&channel=" + msg.channel + "&text="
 
-      var space = "  "
-
       var j = 20
 
       var interval = setInterval(() => {
         j -= 1
         if (!j) {
           clearInterval(interval)
-          post(urlCreator(base, "chat.delete", {
+          var params = {
             token: process.env.slack,
             ts: msg.ts,
             channel: msg.channel,
-          }), {}, (error, r) => {
-            if (error) {
-              console.warn(error)
-            } else {
-              console.log(r.body)
-            }
-          })
-        }
-        var text = `:house:${space.repeat(j)}${j > 1 ? ":runner:" : ""}`
-
-        post(editUrl + encodeURIComponent(text), {}, (error, r) => {
-          if (error) {
-            console.warn(error)
-          } else {
-            console.log(r.body)
           }
-        })
+          post(urlCreator(base, "chat.delete", params), {}, logging)
+        }
+        var text = anim[j]
+
+        post(editUrl + encodeURIComponent(text), {}, logging)
       }, 200)
     }
   })
@@ -68,3 +78,11 @@ app.post("/", function (req, res) {
 app.listen(process.env.PORT || 5000, function () {
   console.log("Example app listening on port 3000!")
 })
+
+function logging (err, res) {
+  if (err) {
+    console.warn(err)
+  } else {
+    console.log(res.body || res)
+  }
+}
