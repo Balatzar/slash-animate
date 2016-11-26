@@ -25,7 +25,7 @@ MongoClient.connect(url, (err, db) => {
         console.log(err)
       } else if (!result.length) {
         var demo = {
-          name: demo,
+          name: "demo",
           frames: [
             `:house:${"  ".repeat(20)}:runner2:`,
             `:house:${"  ".repeat(19)}:runner3:`,
