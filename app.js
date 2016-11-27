@@ -51,7 +51,8 @@ MongoClient.connect(url, (err, db) => {
           ],
         }
         var never = JSON.parse(fs.readFileSync("./assets/seeds/nevergonna.json", "utf8"))
-        movies.insert([demo, never], (err, res) => {
+        var starwars = JSON.parse(fs.readFileSync("./assets/seeds/starwars.json", "utf8"))
+        movies.insert([demo, never, starwars], (err, res) => {
           if (err) {
             console.warn(err)
           } else {
@@ -97,7 +98,7 @@ MongoClient.connect(url, (err, db) => {
               params.ts = msg.ts
 
               var interval = setInterval(() => {
-                if (j === movie.frames.length) {
+                if (j === movie.frames.length - 1) {
                   clearInterval(interval)
                   post(urlCreator(base, "chat.delete", params), {}, logging)
                 }
