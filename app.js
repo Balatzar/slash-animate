@@ -82,7 +82,7 @@ MongoClient.connect(url, (err, db) => {
                 var urlUpdate = urlCreator(base, "chat.update", params)
                 console.log(urlUpdate)
                 post(urlUpdate, {}, logging)
-              }, 200)
+              }, 100)
             }
           })
         }
