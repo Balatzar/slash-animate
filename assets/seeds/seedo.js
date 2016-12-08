@@ -1,11 +1,11 @@
 var fs = require("fs")
 
-var file = "./assets/seeds/starwars"
+var file = "./assets/seeds/nevergonna"
 
 var never = fs.readFileSync(file, "utf8")
 
 var json = {
-  name: "starwars",
+  name: "never",
   frames: ["```\n"],
 }
 
