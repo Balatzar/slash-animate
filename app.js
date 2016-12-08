@@ -10,7 +10,7 @@ var base = "https://slack.com/api/"
 
 var app = express()
 var MongoClient = mongodb.MongoClient
-var url = process.env.MONGODB_URI || "mongodb://localhost:27017/sash-animate"
+var url = process.env.MONGODB_URI || "mongodb://localhost:27017/slash-animate"
 
 app.use(bodyParser.json({ limit: "5mb" }))
 app.use(bodyParser.urlencoded({ extended: true }))
