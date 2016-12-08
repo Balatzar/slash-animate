@@ -1,11 +1,11 @@
 var fs = require("fs")
 
-var file = "./assets/seeds/nevergonna"
+var file = "./assets/seeds/starwars"
 
 var never = fs.readFileSync(file, "utf8")
 
 var json = {
-  name: "never",
+  name: "starwars",
   frames: ["```\n"],
 }
 
@@ -33,4 +33,4 @@ for (var i = 1, len = lines.length, j = 0, times = parseInt(lines[0][0] + lines[
   json.frames[j] += lines[i] + "\n"
 }
 
-// fs.writeFileSync(file + ".json", JSON.stringify(json))
+fs.writeFileSync(file + ".json", JSON.stringify(json))
