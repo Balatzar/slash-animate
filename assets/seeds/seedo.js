@@ -26,7 +26,7 @@ for (var i = 1, len = lines.length, j = 0, times = parseInt(lines[0][0] + lines[
       console.log("========")
     }
     j += 1
-    json.frames[j] = ""
+    json.frames[j] = "```\n"
     times = parseInt(lines[i][0] + lines[i][1])
     i += 1
   }
