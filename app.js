@@ -4,7 +4,7 @@ var bodyParser = require("body-parser")
 var post = require("post-json")
 
 var urlCreator = require("./src/modules/url_creator")
-var getSeeds = require("./src/loaders/seeds")
+var initDb = require("./src/init/db")
 
 var base = "https://slack.com/api/"
 
@@ -20,21 +20,8 @@ MongoClient.connect(url, (err, db) => {
     console.log("Unable to connect to the mongoDB server. Error:", err)
   } else {
     var movies = db.collection("movies")
-
-    movies.find({}).toArray(function (err, result) {
-      if (err) {
-        console.log(err)
-      } else if (!result.length) {
-        var seeds = getSeeds()
-        movies.insert(seeds, (err, res) => {
-          if (err) {
-            console.warn(err)
-          } else {
-            console.log("Created demos animation")
-          }
-        })
-      }
-    })
+    
+    initDb(movies)
 
     app.post("/", function (req, res) {
       console.log(req.body)
