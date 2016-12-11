@@ -1,7 +1,6 @@
 var getSeeds = require("../loaders/seeds")
 
 module.exports = movies => {
-
   movies.find({}).toArray(function (err, result) {
     if (err) {
       console.log(err)

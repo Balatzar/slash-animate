@@ -25,6 +25,7 @@ module.exports = () => {
       `:house:${"  ".repeat(2)}:runner2:`,
       `:house:${"  ".repeat(1)}:runner3:`,
     ],
+    description: "Une petite animation sympa pour montrer ce que peut faire l'app",
   }
   var never = JSON.parse(fs.readFileSync("./assets/seeds/nevergonna.json", "utf8"))
   var starwars = JSON.parse(fs.readFileSync("./assets/seeds/starwars.json", "utf8"))

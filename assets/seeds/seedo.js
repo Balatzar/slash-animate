@@ -1,15 +1,17 @@
 var fs = require("fs")
 
-var file = "./assets/seeds/starwars"
+var file = "./assets/seeds/nevergonna"
 
-var never = fs.readFileSync(file, "utf8")
+var content = fs.readFileSync(file, "utf8")
 
 var json = {
-  name: "starwars",
+  name: "never",
   frames: ["```\n"],
 }
 
-var lines = never.split("\n")
+var lines = content.split("\n")
+
+json.description = lines.shift()
 
 for (var i = 1, len = lines.length, j = 0, times = parseInt(lines[0][0] + lines[0][1]); i < len; i += 1) {
   if (i % 14 === 0) {
