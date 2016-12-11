@@ -34,7 +34,7 @@ MongoClient.connect(url, (err, db) => {
           }
           let text = "Voilà tous les films !\n"
           for (let i = 0; i < allMovies.length; i += 1) {
-            text += `>${allMovies[i].name}\n*${allMovies[i].description}*`
+            text += `>${allMovies[i].name}\n*${allMovies[i].description}*\n`
           }
           const response = {
             response_type: "in_channel",
