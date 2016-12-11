@@ -20,12 +20,27 @@ MongoClient.connect(url, (err, db) => {
     console.log("Unable to connect to the mongoDB server. Error:", err)
   } else {
     var movies = db.collection("movies")
-    
+
     initDb(movies)
 
     app.post("/", function (req, res) {
       console.log(req.body)
       var name = req.body.text || "demo"
+
+      if (name === "list" || name === "-l") {
+        return movies.find().toArray(allMovies => {
+          const movieNames = allMovies.map(m => `>${m.name}/n`)
+          let text = "Voilà tous les films !\n"
+          for (let i = 0; i < movieNames.length; i += 1) {
+            text += movieNames[i]
+          }
+          const response = {
+            response_type: "in_channel",
+            text,
+          }
+          res.status(200).json(response)
+        })
+      }
 
       movies.findOne({ name }, (err, movie) => {
         if (err) {
