@@ -32,7 +32,7 @@ MongoClient.connect(url, (err, db) => {
           if (err) {
             throw err
           }
-          const movieNames = allMovies.map(m => `>${m.name}/n`)
+          const movieNames = allMovies.map(m => `>${m.name}\n`)
           let text = "Voilà tous les films !\n"
           for (let i = 0; i < movieNames.length; i += 1) {
             text += movieNames[i]
