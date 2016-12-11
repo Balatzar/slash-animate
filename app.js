@@ -28,7 +28,7 @@ MongoClient.connect(url, (err, db) => {
       var name = req.body.text || "demo"
 
       if (name === "list" || name === "-l") {
-        return movies.find().toArray(allMovies => {
+        return movies.find({}).toArray(allMovies => {
           const movieNames = allMovies.map(m => `>${m.name}/n`)
           let text = "Voilà tous les films !\n"
           for (let i = 0; i < movieNames.length; i += 1) {
