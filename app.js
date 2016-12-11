@@ -32,9 +32,9 @@ MongoClient.connect(url, (err, db) => {
           if (err) {
             throw err
           }
-          let text = "Voilà tous les films !\n"
+          let text = "Voilà tous les films !\n\n"
           for (let i = 0; i < allMovies.length; i += 1) {
-            text += `>${allMovies[i].name}\n*${allMovies[i].description}*\n`
+            text += `*${i + 1} - ${allMovies[i].name}*\n>${allMovies[i].description}\n`
           }
           const response = {
             response_type: "in_channel",
